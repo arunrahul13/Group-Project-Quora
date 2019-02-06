@@ -9,6 +9,12 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "users", schema = "quora")
+@NamedQueries(
+        {
+                @NamedQuery(name = "userByUuid", query = "select u from UserEntity u where u.uuid = :uuid"),
+                @NamedQuery(name = "userByEmail", query = "select u from UserEntity u where u.email =:email")
+        }
+)
 public class UserEntity implements Serializable {
 
     @Id
