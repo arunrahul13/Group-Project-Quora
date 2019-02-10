@@ -36,6 +36,14 @@ public class UserDao {
         }
     }
 
+    public UserEntity getUserByUuid(final String uuid){
+        try{
+            return entityManager.createNamedQuery("userByUuid",UserEntity.class).setParameter("uuid",uuid).getSingleResult();
+        } catch (NoResultException nre){
+            return null;
+        }
+    }
+
     public UserAuthEntity createAuthToken(final UserAuthEntity userAuthTokenEntity) {
         entityManager.persist(userAuthTokenEntity);
         return userAuthTokenEntity;
@@ -53,5 +61,11 @@ public class UserDao {
         }
     }
 
+    public String deleteUser(final UserEntity userEntity){
+        String uuid=userEntity.getUuid();
+        entityManager.remove(userEntity);
+        return uuid;
+
+    }
 
 }
