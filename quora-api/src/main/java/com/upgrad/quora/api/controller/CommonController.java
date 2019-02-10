@@ -23,7 +23,7 @@ public class CommonController {
         String[] bearerToken= authorization.split("Basic ");
         final UserEntity userEntity=userAdminBusinessService.getUser(userUuid,bearerToken[1]);
         UserDetailsResponse userDetailsResponse=new UserDetailsResponse().firstName(userEntity.getFirstName())
-                .lastName(userEntity.getLastName()).userName(userEntity.getUserName())
+                .lastName(userEntity.getLastName()).userName(userEntity.getUsername())
                 .emailAddress(userEntity.getEmail()).contactNumber(userEntity.getContactNumber())
                 .dob(userEntity.getDob()).country(userEntity.getCountry()).aboutMe(userEntity.getAboutme());
         return new ResponseEntity<UserDetailsResponse>(userDetailsResponse, HttpStatus.OK);
